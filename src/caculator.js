@@ -17,8 +17,16 @@ class Caculator{
 				let value = event.target.innerText;
 				this.lastNode && this.lastNode.classList.remove('active');
 				if(num.includes(value)){
-					if(this.numState == 'input')
-						this.result.innerText = this.result.innerText-0 == "0" ? value : this.result.innerText + value;
+					if(this.numState == 'input'){
+						if(this.result.innerText == 0 && !this.result.innerText.includes('.') &&value != '.'){
+							this.result.innerText = value;	
+						}else if(this.result.innerText.includes('.') && value == '.'){
+							
+						}else{
+							this.result.innerText += value;	
+						}
+					}
+						
 					else{
 						this.result.innerText = value;
 						this.numState = "input";
@@ -63,10 +71,10 @@ class Caculator{
 		let val = 0;
 		switch(this.funcType){
 			case "+":
-				val = a+b;
+				val = (a*100+b*100)/100;
 				break;
 			case "-":
-				val = a-b;
+				val = (a*100-b*100)/100;
 				break;
 			case "×":
 				val = a*b;
