@@ -18,16 +18,27 @@ class Caculator{
 				this.lastNode && this.lastNode.classList.remove('active');
 				if(num.includes(value)){
 					if(this.numState == 'input')
-						this.result.innerText = this.result.innerText == "0" ? value : this.result.innerText + value;
+						this.result.innerText = this.result.innerText-0 == "0" ? value : this.result.innerText + value;
 					else{
 						this.result.innerText = value;
 						this.numState = "input";
 					}
 				}else if(func.includes(value)){  //加减乘除
-					this.numResult = this.caul(this.numResult , (this.result.innerText - 0));
 					event.target.classList.add('active');
+					
+					if(this.numState == "clear"){ //只是修改运算符
+						this.lastNode = event.target;
+						this.funcType = value == "=" ? "+" : value;
+						return;
+					}  
+					if(value != '='){
+						this.numState = "clear";
+					}else{
+						this.numSatete = "cleardeng";
+					}
+					
+					this.numResult = this.caul(this.numResult , (this.result.innerText - 0));
 					this.funcType = value == "=" ? "+" : value;
-					this.numState = "clear";
 					this.result.innerText = this.numResult;
 					this.numResult = value == "=" ?  0 : this.numResult;
 				}else{
