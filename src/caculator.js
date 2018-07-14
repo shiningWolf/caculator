@@ -25,7 +25,6 @@ class Caculator{
 					}
 				}else if(func.includes(value)){  //加减乘除
 					event.target.classList.add('active');
-					
 					if(this.numState == "clear"){ //只是修改运算符
 						this.lastNode = event.target;
 						this.funcType = value == "=" ? "+" : value;
@@ -34,7 +33,7 @@ class Caculator{
 					if(value != '='){
 						this.numState = "clear";
 					}else{
-						this.numSatete = "cleardeng";
+						this.numState = "cleardeng";
 					}
 					
 					this.numResult = this.caul(this.numResult , (this.result.innerText - 0));
